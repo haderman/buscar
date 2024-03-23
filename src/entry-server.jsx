@@ -1,12 +1,14 @@
 import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 
-import App from './app';
+import App from './app'
 
-export function render(data) {
+export async function render(Component, data) {
   return renderToString(
     <StrictMode>
-      <App data={data} />
+      <App>
+        <Component data={data} />
+      </App>
     </StrictMode>,
   )
 }

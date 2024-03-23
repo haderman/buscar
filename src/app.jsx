@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -6,22 +6,11 @@ import PropTypes from 'prop-types';
 import './index.css'
 
 App.propTypes = {
-  data: PropTypes.any.isRequired,
+  children: PropTypes.node,
 }
 
-function App({ data }) {
-  // const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <h1>
-        hola
-      </h1>
-      <p className="read-the-docs">
-        {JSON.stringify(data)}
-      </p>
-    </>
-  )
+function App({ children }) {
+  return children
 }
 
 export default App

@@ -1,11 +1,13 @@
+// const API_URL = 'url' //import.meta.env.API_URL
+
 export async function getServerData() {
-  // const response = await fetch('https://api.mercadolibre.com/sites/MLA/search?q=')
+  // const response = await fetch(API_URL)
   // const data = await response.json()
 
   return data
 }
 
 const data = {
-  name: 'vite',
-  version: '2.0.0',
+  title: 'Hello, Vite!',
+  count: 5,
 }

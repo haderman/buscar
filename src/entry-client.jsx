@@ -2,15 +2,30 @@ import { StrictMode } from 'react'
 import { hydrateRoot } from 'react-dom/client'
 
 import App from './app'
+import { routes } from './routes'
+import { matchRoutes } from './helpers/match-routes'
 
-let data
+function renderApp() {
+  const path = window.location.pathname
+  const match = matchRoutes(routes, path)
 
-if (typeof window !== 'undefined') {
-  data = window.__data__
+  if (match) {
+    const Component = match.route.component
+    // Assuming server-side data is passed through a global variable
+    const data = window.__DATA__
+
+    hydrateRoot(document.getElementById('app'),
+      <StrictMode>
+        <App>
+          <Component data={data} />
+        </App>
+      </StrictMode>
+    )
+  } else {
+    console.error('No route matched.')
+  }
 }
 
-hydrateRoot(document.getElementById('app'),
-  <StrictMode>
-    <App data={data} />
-  </StrictMode>
-)
+if (typeof window !== 'undefined') {
+  renderApp()
+}
