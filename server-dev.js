@@ -13,6 +13,11 @@ const vite = await createServer({
 
 app.use(vite.middlewares)
 
+app.get('/search', async (req, res) => {
+  const search = req.query.search
+  res.redirect(`/items?search=${search}`)
+})
+
 app.use('*', async (req, res) => {
   const url = req.originalUrl
 
@@ -28,7 +33,7 @@ app.use('*', async (req, res) => {
     }
 
     const { route, params } = branch
-    const { getServerSideProps } = route.component
+    const { getServerSideProps } = route
 
     let data = {};
     if (getServerSideProps) {
