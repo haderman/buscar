@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Layout } from '../../components/layout'
 
 ItemsPage.propTypes = {
   data: PropTypes.object.isRequired,
@@ -6,10 +7,12 @@ ItemsPage.propTypes = {
 
 function ItemsPage({ data }) {
   return (
-    <div>
-      <h1>Item Details</h1>
-      <p>{JSON.stringify(data)}</p>
-    </div>
+    <Layout>
+      <div>
+        <h1>Item Details</h1>
+        <p>{JSON.stringify(data)}</p>
+      </div>
+    </Layout>
   )
 }
 

@@ -38,8 +38,7 @@ app.use('*', async (req, res) => {
     let data = {};
     if (getServerSideProps) {
       const context = { query: req.query, params: params }
-      const props = await getServerSideProps(context)
-      data = props.data
+      data = await getServerSideProps(context)
     }
 
     const template = await vite.transformIndexHtml(url, fs.readFileSync('index.html', 'utf-8'))

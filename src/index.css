@@ -1,3 +1,112 @@
 :root {
+  --color-brand: oklch(0.92 0.19 101.74);
+  --color-focus: oklch(0.72 0.18 239.87);
+}
 
+body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-size: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+span {
+  font-size: inherit;
+}
+
+header {
+  background-color: var(--color-brand);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  img {
+    height: 34px;
+  }
+
+  a:focus {
+    outline: 1px solid var(--color-focus);
+    outline-offset: 1px;
+    border-radius: 2px;
+  }
+}
+
+main {
+  padding: 1rem;
+}
+
+.nav-search {
+  max-width: 720px;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.search {
+  --rad: 2px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: var(--rad);
+  width: 100%;
+  max-width: 720px;
+  box-shadow: 0px 1px 2.1px 0px oklch(5% 0 0 / 0.2);
+  height: 40px;
+
+  &:has(input:focus) {
+    outline: 1px solid var(--color-focus);
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    height: 40px;
+    padding-left: 15px;
+    height: calc(100% - 2px);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    position: relative;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: oklch(0.95 0 0);
+    border: none;
+    border-radius: 0 var(--rad) var(--rad) 0;
+    cursor: pointer;
+    height: 100%;
+
+    &:focus {
+      outline: 1px solid var(--color-focus);
+    }
+  }
+
+  svg {
+    color: oklch(0.36 0 0);
+    width: 22px;
+    aspect-ratio: 1 / 1;
+  }
 }

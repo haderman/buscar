@@ -1,17 +1,30 @@
-export function Search() {
+import PropTypes from 'prop-types'
+import { IconSearch } from './IconSearch'
+
+export function Search(props) {
   return (
-    <form role="search" method="GET" action="/search">
-      <label>Ingresa lo que quieras encontrar</label>
+    <form className="search" role="search" method="GET" action="/search">
+      <label htmlFor="navbar-searc" className="visually-hidden">
+        Ingresa lo que quieras encontrar
+      </label>
       <input
-        type="search"
+        id="navbar-search"
+        type="text"
         name="search"
         autoComplete="on"
         placeholder="Buscar productos"
         autoCapitalize="off"
         autoCorrect="off"
         spellCheck="false"
+        defaultValue={props.defaultValue}
       />
-      <button type="submit">Buscar</button>
+      <button type="submit">
+        <IconSearch />
+      </button>
     </form>
   )
+}
+
+Search.propTypes = {
+  defaultValue: PropTypes.string
 }

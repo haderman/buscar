@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types'
+import { Layout } from '../../components/layout';
 
 ItemsPage.propTypes = {
   data: PropTypes.object.isRequired,
+  query: PropTypes.string,
 }
 
-function ItemsPage({ data }) {
+function ItemsPage(props) {
+  console.log(props.data)
   return (
-    <div>
-      <h1>Items</h1>
-      <p>{JSON.stringify(data)}</p>
-    </div>
+    <Layout searchProps={{ defaultValue: props.data.query }}>
+      <div>
+        <h1>Items - {props.data.query}</h1>
+        <p>{JSON.stringify(props.data.items)}</p>
+      </div>
+    </Layout>
   )
 }
 
@@ -17,9 +22,8 @@ export default ItemsPage;
 
 export async function getServerSideProps(context) {
   const { search } = context.query
-  console.log('-> getServerSideProps: ', search)
   const data = await fetchItems(search)
-  return { data }
+  return data
 }
 
 const API_URL = 'https://api.mercadolibre.com/sites/MLA/search?q='

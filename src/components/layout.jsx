@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types'
 import { Search } from './search'
 
-export function Layout({ children }) {
+export function Layout({ children, searchProps }) {
   return (
     <div>
-      <header>
-        <Search />
+      <header key="header">
+        <a href="/">
+          <img src="/logo.webp" alt="Logo" />
+        </a>
+        <Search {...searchProps} />
       </header>
       <main>
         {children}
@@ -15,5 +18,6 @@ export function Layout({ children }) {
 }
 
 Layout.propTypes = {
-   children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  searchProps: PropTypes.shape(Search.propTypes),
 }
