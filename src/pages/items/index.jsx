@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { Search } from '../../components/search'
 
 ItemsPage.propTypes = {
   data: PropTypes.object.isRequired,
@@ -8,7 +7,6 @@ ItemsPage.propTypes = {
 function ItemsPage({ data }) {
   return (
     <div>
-      <Search />
       <h1>Items</h1>
       <p>{JSON.stringify(data)}</p>
     </div>
