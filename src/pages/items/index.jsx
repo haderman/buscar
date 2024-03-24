@@ -31,5 +31,6 @@ async function fetchItems(query) {
   const response = await fetch(url)
   const data = await response.json()
   const items = data.results.slice(0, 4)
+
   return { items, query }
 }

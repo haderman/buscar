@@ -18,9 +18,23 @@ export default ItemsPage;
 export async function getServerSideProps(context) {
   const { id } = context.params
   const data = await fetchItemById(id)
-  return { data }
+  const description = await fetchItemDescriptionById(id)
+  return { data, description }
 }
 
 async function fetchItemById(id) {
-  return { item: {}, id }
+  let url = new URL(id, API_URL)
+  const response = await fetch(url)
+  const data = await response.json()
+  return { item: data, id }
 }
+
+async function fetchItemDescriptionById(id) {
+  let url = new URL(`${id}/description`, API_URL)
+  const response = await fetch(url)
+  const data = await response.json()
+  console.log('-> fetchItemDescriptionById: ', data)
+  return { description: data }
+}
+
+const API_URL = 'https://api.mercadolibre.com/items/'
