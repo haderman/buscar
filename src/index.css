@@ -1,13 +1,8 @@
 :root {
   --color-brand: oklch(0.92 0.19 101.74);
   --color-focus: oklch(0.72 0.18 239.87);
-}
 
-body {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
-  font-size: 1rem;
+  --max-width-section: 800px;
 }
 
 * {
@@ -16,9 +11,33 @@ body {
   padding: 0;
 }
 
+body {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  background-color: oklch(0.95 0 0);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
 p,
 span {
   font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
 }
 
 header {
@@ -40,12 +59,9 @@ header {
   }
 }
 
-main {
-  padding: 1rem;
-}
-
-.nav-search {
-  max-width: 720px;
+ol,
+ul {
+  list-style: none;
 }
 
 .visually-hidden {
@@ -59,6 +75,19 @@ main {
   width: 1px;
 }
 
+.nav-search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: var(--max-width-section);
+
+  .search {
+    flex: 1;
+  }
+}
+
 .search {
   --rad: 2px;
   display: flex;
@@ -66,7 +95,6 @@ main {
   background-color: white;
   border-radius: var(--rad);
   width: 100%;
-  max-width: 720px;
   box-shadow: 0px 1px 2.1px 0px oklch(5% 0 0 / 0.2);
   height: 40px;
 
@@ -109,4 +137,49 @@ main {
     width: 22px;
     aspect-ratio: 1 / 1;
   }
+}
+
+.search-results-list {
+  width: 100%;
+  max-width: var(--max-width-section);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.list-item-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  height: 200px;
+  background-color: oklch(1 0 0);
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    data {
+      font-size: 1.5rem;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 200;
+      color: oklch(0.36 0 0);
+
+      &:visited {
+        color: inherit;
+      }
+    }
+  }
+
 }

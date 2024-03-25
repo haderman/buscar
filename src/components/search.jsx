@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import { IconSearch } from './IconSearch'
+import { IconSearch } from './icon-search'
 
 export function Search(props) {
   return (
     <form className="search" role="search" method="GET" action="/search">
-      <label htmlFor="navbar-searc" className="visually-hidden">
+      <label htmlFor="navbar-search" className="visually-hidden">
         Ingresa lo que quieras encontrar
       </label>
       <input

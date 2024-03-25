@@ -3,17 +3,19 @@ import { Search } from './search'
 
 export function Layout({ children, searchProps }) {
   return (
-    <div>
+    <>
       <header key="header">
-        <a href="/">
-          <img src="/logo.webp" alt="Logo" />
-        </a>
-        <Search {...searchProps} />
+        <div className="nav-search-container">
+          <a href="/">
+            <img src="/logo.webp" alt="Logo" />
+          </a>
+          <Search {...searchProps} />
+        </div>
       </header>
       <main>
         {children}
       </main>
-    </div>
+    </>
   )
 }
 
