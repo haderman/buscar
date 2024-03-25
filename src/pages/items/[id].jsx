@@ -46,3 +46,9 @@ export async function getServerSideProps(context) {
   const currencyData = await api.fetchCurrency(data.site_id)
   return { data, descriptionData, currencyData }
 }
+
+export function mapPropsToSEO({ data }) {
+  return {
+    title: data.title,
+  }
+}

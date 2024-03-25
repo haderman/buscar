@@ -47,3 +47,9 @@ export async function getServerSideProps(context) {
   const data = await api.searchItems(search)
   return data
 }
+
+export function mapPropsToSEO(data) {
+  return {
+    title: data.query,
+  }
+}

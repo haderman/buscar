@@ -41,13 +41,22 @@ app.use('*', async (req, res) => {
       data = await getServerSideProps(context)
     }
 
+    let seoHtml = ''
+    if (route.mapPropsToSEO) {
+      const seo = route.mapPropsToSEO(data)
+      seoHtml = `<title>${seo.title}</title>`
+    }
+
     const template = await vite.transformIndexHtml(url, fs.readFileSync('index.html', 'utf-8'))
     const { render } = await vite.ssrLoadModule('/src/entry-server.jsx')
 
     const script = `<script>window.__DATA__=${JSON.stringify(data)}</script>`
     const appHtml = await render(route.component, data)
 
-    const html = template.replace('<!--slot-html-->', `${appHtml} ${script}`)
+    const html = template
+      .replace('<!--slot-head-->', seoHtml)
+      .replace('<!--slot-html-->', `${appHtml} ${script}`)
+
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
   } catch (error) {
     res.status(500).end(error)
