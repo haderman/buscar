@@ -4,15 +4,16 @@ import { Card } from '../../components/card'
 import { Currency } from '../../components/currency'
 
 ItemsPage.propTypes = {
-  data: PropTypes.object.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  currencyData: PropTypes.object.isRequired,
+  query: PropTypes.string.isRequired,
 }
 
 function ItemsPage(props) {
-  console.log('props: ', props.data.currencyData)
   return (
-    <Layout searchProps={{ defaultValue: props.data.query }}>
+    <Layout searchProps={{ defaultValue: props.query }}>
       <ol className="search-results-list">
-        {props.data.items.map((item) => {
+        {props.items.map((item) => {
           return (
             <li key={item.id}>
               <Card
@@ -20,9 +21,9 @@ function ItemsPage(props) {
                 title={item.title}
                 price={
                   <Currency
-                    id={props.data.currencyData.id}
+                    id={props.currencyData.id}
                     value={item.price}
-                    symbol={props.data.currencyData.symbol}
+                    symbol={props.currencyData.symbol}
                   />
                 }
                 currencyId={item.currency_id}
@@ -46,7 +47,7 @@ export async function getServerSideProps(context) {
   return data
 }
 
-const API_URL = 'https://api.mercadolibre.com/sites/MLB/search?q='
+const API_URL = 'https://api.mercadolibre.com/sites/MLA/search?q='
 async function fetchItems(query) {
   let url = new URL(API_URL)
   url.searchParams.append('q', query)
@@ -71,25 +72,3 @@ async function fetchCurrency(siteId) {
   currencyCache[siteId] = currencyData
   return currencyData
 }
-
-/**
-
-{
-  categories: string[],
-  items: [
-    {
-      id: string,
-      title: string,
-      price: {
-        currency: string,
-        amount: number,
-        decimals: number
-      },
-      picture: string,
-      condition: string,
-      free_shipping: boolean
-    }
-  ]
-}
-
- */

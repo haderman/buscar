@@ -7,7 +7,7 @@ export async function render(Component, data) {
   return renderToString(
     <StrictMode>
       <App>
-        <Component data={data} />
+        <Component {...data} />
       </App>
     </StrictMode>,
   )

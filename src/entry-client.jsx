@@ -17,7 +17,7 @@ function renderApp() {
     hydrateRoot(document.getElementById('app'),
       <StrictMode>
         <App>
-          <Component data={data} />
+          <Component {...data} />
         </App>
       </StrictMode>
     )
