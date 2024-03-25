@@ -11,7 +11,6 @@ function renderApp() {
 
   if (match) {
     const Component = match.route.component
-    // Assuming server-side data is passed through a global variable
     const data = window.__DATA__
 
     hydrateRoot(document.getElementById('app'),
