@@ -44,6 +44,13 @@ app.use('*', async (req, res) => {
     let seoHtml = ''
     if (route.mapPropsToSEO) {
       const seo = route.mapPropsToSEO(data)
+      /**
+       * La idea es mapear los datos de la página a un objeto SEO y luego
+       * transformarlo en HTML.
+       *
+       * Esta composicion es un ejemplo simple, pero se puede extender a mas metatags por lo que
+       * debería estar en su propio archivo.
+       */
       seoHtml = `<title>${seo.title}</title>`
     }
 
